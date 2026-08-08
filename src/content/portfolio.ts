@@ -2,11 +2,8 @@
  * ─────────────────────────────────────────────────────────────────────────────
  *  SINGLE SOURCE OF TRUTH FOR ALL SITE CONTENT
  * ─────────────────────────────────────────────────────────────────────────────
- *  Every piece of text on the site comes from this file. To make the site
- *  yours, edit the values below — you should not need to touch any component.
- *
- *  Everything marked TODO is placeholder copy. Search this file for "TODO"
- *  to find everything that still needs your real content.
+ *  Every piece of text on the site comes from this file. To make further
+ *  edits, change the values below — components read from here directly.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
@@ -37,20 +34,25 @@ export type CaseStudy = {
   timeframe: string;
   /** Short labels shown as pills on the card, e.g. ["0→1", "Mobile", "Growth"] */
   tags: string[];
-  /** Headline outcomes. 2–4 works best visually. */
+  /** Headline outcomes. 2–4 works best visually. Omit if there are no real numbers yet. */
   metrics: Metric[];
-  /** The narrative. Standard PM arc: Problem → Role → Approach → Outcome → Learnings. */
+  /** The narrative. Standard PM arc: Problem → Approach → Outcome. */
   sections: CaseStudySection[];
+  /** External links shown as buttons on the case study page, e.g. a GitHub repo. */
+  links?: SocialLink[];
   /** Set false to keep a case study in the repo but hide it from the site. */
   published: boolean;
 };
 
 export type Role = {
-  company: string;
+  /** Employer or organization. Omit for independent / no fixed org. */
+  company?: string;
   title: string;
+  /** e.g. "Jan 2025 – Present", or a duration like "2 years 11 months". */
   period: string;
-  location: string;
-  /** 2–4 bullets. Lead with outcome, not responsibility. */
+  /** Omit if there's no meaningful location to show. */
+  location?: string;
+  /** 2–4 bullets. Problem / Shipped / Impact reads well for build-heavy roles. */
   highlights: string[];
 };
 
@@ -67,167 +69,164 @@ export type SocialLink = {
 /* ── Site-wide identity ───────────────────────────────────────────────────── */
 
 export const site = {
-  /** TODO: your name — used in the header, hero, footer, and page titles. */
   name: "Om Desai",
-  /** TODO: your positioning line. Shown in the hero, under your name. */
-  title: "Associate Product Manager",
-  /**
-   * TODO: the one sentence you want someone to remember. Keep it concrete —
-   * what kind of problems you work on, not adjectives about yourself.
-   */
+  title: "Associate Product Manager (Candidate) — CS Student, CSU Dominguez Hills",
   tagline:
-    "I build products at the seam between messy user problems and the data that explains them.",
-  /** TODO: used for SEO description and link previews. 1–2 sentences. */
+    "I build products at the seam between messy user problems and the data that explains them. I'm a Computer Science student who builds real tools — not just studies them — from an AI accountability app to internal scheduling systems used by real teams.",
   description:
-    "Portfolio of Om Desai — associate product manager focused on 0→1 product work, user research, and data-informed decision making.",
-  /** TODO: e.g. "San Francisco, CA" or "Remote — US" */
-  location: "TODO: Your City, State",
-  /** TODO: your contact email. */
-  email: "TODO@example.com",
-  /** TODO: canonical URL once deployed. Used for SEO metadata. */
-  url: "https://omdesai14.github.io/portfolio",
+    "Portfolio of Om Desai — Computer Science student at CSU Dominguez Hills building real products, from an AI accountability app to internal scheduling systems used by real teams. Open to APM and PM-track roles.",
   /**
-   * TODO: a short availability note shown in the contact section.
-   * Set to null to hide it entirely.
+   * No fixed personal location provided yet. Leave as null (rather than
+   * guess) — the contact section simply omits the line while this is null.
    */
-  availability: "Open to APM and PM roles starting Fall 2026.",
+  location: null as string | null,
+  email: "odesai2@toromail.csudh.edu",
+  /** Canonical URL once deployed. Used for SEO metadata. */
+  url: "https://omdesai14.github.io/portfolio",
+  availability: "Open to APM and PM-track roles.",
+  /**
+   * Headshot, served from /public. Drop the file in as `public/avatar.jpg`
+   * (or update this path) and it appears automatically — until then the
+   * Avatar component falls back to initials, so nothing looks broken.
+   */
+  avatarSrc: "/avatar.jpg",
+  avatarInitials: "OD",
 };
 
 /* ── Social / external links ──────────────────────────────────────────────── */
-/* TODO: replace hrefs. Delete any row you don't want shown. */
 
 export const socials: SocialLink[] = [
-  { label: "LinkedIn", href: "https://linkedin.com/in/TODO" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/om-desai-8717041b0/" },
   { label: "GitHub", href: "https://github.com/omdesai14" },
   { label: "Email", href: `mailto:${site.email}` },
 ];
 
 /* ── About ────────────────────────────────────────────────────────────────── */
-/* TODO: replace entirely. Each string is its own paragraph. Two or three
-   paragraphs is the sweet spot — this is a portfolio, not a biography. */
 
 export const about: string[] = [
-  "TODO: Open with what you actually do and what draws you to product. One or two sentences. Skip the throat-clearing — no “ever since I was young.”",
-  "TODO: Second paragraph — the substance. What you've shipped, what domains you know, what you're unusually good at. Point at evidence rather than claiming traits.",
-  "TODO: Optional third paragraph — what you're looking for next, and something human. This is the one place a little personality is welcome.",
+  "I'm a Computer Science student at California State University, Dominguez Hills, building products at the intersection of messy user problems and the data that explains them — and building real tools, not just studying them.",
+  "I currently work as a Software Development Intern at the California STEM Institute for Innovation and Improvement, where I built an organizational scheduling system in Python and JavaScript now used by around 100 people. Before that, I was a FabLab and Software Technician at CSUDH, supporting students across Swift, the Apple hardware and software ecosystem (iPad, Mac, Clips, iMovie, GarageBand), and 3D printing tools like Tinkercad and Fusion 360. I also tutored math for GEAR UP, working with over 2,000 students.",
+  "This upcoming term I'm starting as an AWS Campus Leader with THE TEAM, a startup bringing cloud computing programming to campus. Outside of work, I build my own AI tools — including ZeroSkip, an AI-powered accountability app designed to keep people consistent, not just motivated.",
 ];
 
 /* ── Case studies ─────────────────────────────────────────────────────────── */
-/*
-   The centerpiece of a PM portfolio. Two strong case studies beat five thin
-   ones. Each gets its own page at /work/<slug>, generated automatically.
-
-   The placeholder below is a fully-worked skeleton showing the shape and the
-   level of specificity that lands. Replace it — don't ship it.
-*/
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "example-case-study",
-    title: "TODO: Case study title — name the outcome, not the feature",
+    slug: "zeroskip",
+    title: "ZeroSkip — Turning Motivation Into Consistency",
     summary:
-      "TODO: One line a recruiter can skim. What was broken, what you did, what changed.",
-    org: "TODO: Company or Team",
-    role: "TODO: Your Role",
-    timeframe: "TODO: Mon YYYY – Mon YYYY",
-    tags: ["TODO: 0→1", "TODO: Growth", "TODO: Mobile"],
-    metrics: [
-      { value: "TODO", label: "TODO: what this number measured" },
-      { value: "TODO", label: "TODO: what this number measured" },
-      { value: "TODO", label: "TODO: what this number measured" },
-    ],
+      "Most productivity apps track output. ZeroSkip tracks behavior — generating daily action plans and adapting difficulty in real time to keep people consistent, not just motivated.",
+    org: "Personal project",
+    role: "Founder & Sole Developer",
+    timeframe: "Ongoing",
+    tags: ["0→1", "AI/ML", "Solo project"],
+    metrics: [],
     sections: [
       {
         heading: "The problem",
         body: [
-          "TODO: What was actually wrong, for whom, and how you knew. Ground it — a support-ticket volume, a drop-off rate, a quote from a user interview. The strongest openings make the reader feel the problem before you mention a solution.",
-          "TODO: Why it mattered to the business. Connect the user pain to a number someone with a budget cares about.",
-        ],
-      },
-      {
-        heading: "My role",
-        body: [
-          "TODO: Be precise and honest about scope. Who was on the team, what you personally owned, what you influenced but didn't own. Reviewers trust specific, bounded claims far more than “led everything.”",
+          "Most productivity and accountability tools measure output — tasks checked off, streaks kept — but don't adapt to how a person is actually behaving. The moment motivation dips, the plan stays static, the app stops being useful, and the streak breaks. The tool was designed around good days, not the days that actually determine whether a habit sticks.",
         ],
       },
       {
         heading: "Approach",
         body: [
-          "TODO: How you got from problem to decision. Research you ran, options you weighed, what you deliberately cut and why. The tradeoffs are the most interesting part — this is where you show judgment rather than process.",
-          "TODO: Include at least one decision that turned out to be wrong, and what you did about it. Nothing signals real experience faster.",
+          "I built ZeroSkip in Python with Streamlit, which let me iterate on the core behavior loop quickly instead of getting slowed down by frontend scaffolding. The app generates a daily action plan for the user, tracks consistency over time, and adjusts difficulty based on how the user is actually engaging — rather than holding everyone to a fixed, one-size-fits-all target.",
         ],
       },
       {
-        heading: "Outcome",
+        heading: "What it does today",
         body: [
-          "TODO: What shipped and what moved. Give the measurement window and the baseline — “38% lift” means nothing without “over 6 weeks, from a 12% baseline.” If a result was flat or negative, say so; it's more credible than a page of wins.",
-        ],
-      },
-      {
-        heading: "What I'd do differently",
-        body: [
-          "TODO: One or two genuine reflections. Specific and self-aware, not humble-bragging. This section is disproportionately what interviewers ask about.",
+          "ZeroSkip generates daily action plans, tracks a user's consistency, and adapts the difficulty of what it asks for based on recent behavior. The goal isn't to maximize motivation on any single day — it's to keep someone in the system on the days they're least motivated to be.",
         ],
       },
     ],
+    links: [{ label: "View on GitHub", href: "https://github.com/omdesai14/zeroskip" }],
     published: true,
   },
 ];
 
 /* ── Experience ───────────────────────────────────────────────────────────── */
-/* TODO: replace with your real roles, most recent first. */
+/* Newest first. */
 
 export const experience: Role[] = [
   {
-    company: "TODO: Company",
-    title: "TODO: Your Title",
-    period: "TODO: Mon YYYY – Present",
-    location: "TODO: City, State",
+    company: "THE TEAM",
+    title: "AWS Campus Leader",
+    period: "Incoming — Fall 2026",
+    location: "CSU Dominguez Hills",
     highlights: [
-      "TODO: Lead with the outcome and the number. “Cut onboarding drop-off 22% by …” beats “Responsible for onboarding.”",
-      "TODO: Second highlight — pick something only you could claim.",
-      "TODO: Third highlight — optional.",
+      "Problem: Students need a bridge into cloud computing and AWS's ecosystem.",
+      "Shipped: Leading AWS technical programming and campus outreach as part of the startup's Campus Leader program.",
+      "Impact: Incoming — starting Fall 2026.",
     ],
   },
   {
-    company: "TODO: Earlier Company",
-    title: "TODO: Your Title",
-    period: "TODO: Mon YYYY – Mon YYYY",
-    location: "TODO: City, State",
+    company: "California STEM Institute for Innovation and Improvement",
+    title: "Software Development Intern",
+    period: "Current",
+    location: "CSU Dominguez Hills",
     highlights: [
-      "TODO: Outcome-first bullet.",
-      "TODO: Outcome-first bullet.",
+      "Problem: The organization had no centralized system for scheduling across staff.",
+      "Shipped: Built an organizational scheduling system using Python and JavaScript.",
+      "Impact: Used by approximately 100 people across the organization.",
+    ],
+  },
+  {
+    company: "CSU Dominguez Hills",
+    title: "FabLab and Software Technician",
+    period: "Part-time, ongoing",
+    location: "CSU Dominguez Hills",
+    highlights: [
+      "Problem: Students needed hands-on support with creative and fabrication tools.",
+      "Shipped: Supported students in Swift coding, Apple software (Clips, iMovie, GarageBand), and 3D printing (Tinkercad, Fusion 360).",
+      "Impact: Ongoing technical support role, part-time throughout my degree.",
+    ],
+  },
+  {
+    company: "GEAR UP",
+    title: "Math Tutor",
+    period: "Part-time",
+    highlights: [
+      "Problem: Students needed accessible, consistent math tutoring support.",
+      "Shipped: Provided one-on-one and group math tutoring.",
+      "Impact: Worked with 2,000+ students.",
+    ],
+  },
+  {
+    title: "Academic Coach",
+    period: "2 years 11 months",
+    highlights: [
+      "Problem: Students needed broader academic support beyond a single subject.",
+      "Shipped: Provided academic coaching and mentorship.",
+      "Impact: 2 years 11 months of sustained coaching relationships.",
     ],
   },
 ];
 
 /* ── Skills ───────────────────────────────────────────────────────────────── */
-/* TODO: trim to what you'd genuinely defend in an interview. A short honest
-   list reads far stronger than an exhaustive one. */
 
 export const skills: SkillGroup[] = [
   {
-    category: "Product",
+    category: "Technical",
     items: [
-      "Product discovery",
-      "User research & interviews",
-      "Roadmapping & prioritization",
-      "PRDs & specs",
-      "A/B testing",
-      "Go-to-market",
+      "Python",
+      "Swift",
+      "JavaScript",
+      "Streamlit",
+      "SQL (learning)",
+      "RAG",
+      "Agentic AI",
     ],
   },
   {
-    category: "Data",
-    items: ["SQL", "Amplitude", "Mixpanel", "Looker", "Excel / Sheets modeling"],
+    category: "Product & Tools",
+    items: ["Figma (learning)", "Notion", "Agile / Scrum"],
   },
   {
-    category: "Design & Delivery",
-    items: ["Figma", "Jira", "Linear", "Notion", "Agile / Scrum"],
-  },
-  {
-    category: "Technical",
-    items: ["Python", "APIs & system design literacy", "Git"],
+    category: "Languages",
+    items: ["English", "Gujarati"],
   },
 ];
 

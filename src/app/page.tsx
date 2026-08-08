@@ -9,15 +9,27 @@ import {
 } from "@/content/portfolio";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { Section } from "@/components/Section";
+import { Avatar } from "@/components/Avatar";
 
 function Hero() {
   return (
     <section className="mx-auto max-w-5xl px-6 pb-16 pt-20 sm:pb-20 sm:pt-28">
+      <div className="flex max-w-3xl animate-rise flex-col items-start gap-6 sm:flex-row sm:items-center">
+        <Avatar
+          src={site.avatarSrc}
+          alt={`${site.name} headshot`}
+          initials={site.avatarInitials}
+          size={104}
+        />
+        <div>
+          <p className="text-sm font-medium text-accent">{site.title}</p>
+          <h1 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-tight text-ink sm:text-6xl">
+            {site.name}
+          </h1>
+        </div>
+      </div>
+
       <div className="max-w-3xl animate-rise">
-        <p className="text-sm font-medium text-accent">{site.title}</p>
-        <h1 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-tight text-ink sm:text-6xl">
-          {site.name}
-        </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted sm:text-xl">
           {site.tagline}
         </p>
@@ -102,18 +114,22 @@ function Experience() {
       <ol className="space-y-10">
         {experience.map((role) => (
           <li
-            key={`${role.company}-${role.title}`}
+            key={`${role.title}-${role.period}`}
             className="grid gap-2 sm:grid-cols-[10rem_1fr] sm:gap-8"
           >
             <div className="text-sm text-ink-faint sm:pt-0.5">
               <span className="block">{role.period}</span>
-              <span className="mt-0.5 block">{role.location}</span>
+              {role.location && (
+                <span className="mt-0.5 block">{role.location}</span>
+              )}
             </div>
             <div>
               <h3 className="font-semibold tracking-tight text-ink">
                 {role.title}
               </h3>
-              <p className="mt-0.5 text-sm text-ink-muted">{role.company}</p>
+              {role.company && (
+                <p className="mt-0.5 text-sm text-ink-muted">{role.company}</p>
+              )}
               <ul className="mt-3 space-y-2">
                 {role.highlights.map((h, i) => (
                   <li
@@ -163,7 +179,9 @@ function Contact() {
             ))}
         </ul>
       </div>
-      <p className="mt-6 text-sm text-ink-faint">{site.location}</p>
+      {site.location && (
+        <p className="mt-6 text-sm text-ink-faint">{site.location}</p>
+      )}
     </Section>
   );
 }

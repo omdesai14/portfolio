@@ -33,8 +33,10 @@ exports:
 | `skills`       | Grouped skills list                                          |
 | `navLinks`     | Header navigation                                            |
 
-Everything currently marked `TODO` is placeholder copy. Search the file for
-`TODO` to find everything that still needs real content.
+Content is filled in with real information. To add a profile photo, drop a
+file in as `public/avatar.jpg` (or update `site.avatarSrc` to match a
+different filename) — the hero falls back to initials until that file
+exists, so nothing breaks in the meantime.
 
 ### Adding a case study
 
