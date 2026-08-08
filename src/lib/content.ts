@@ -34,17 +34,17 @@ export const releases: Release[] = [
   {
     version: "v4.0",
     title: "AWS Campus Leader",
-    org: "Startup",
+    org: "THE TEAM — a startup bringing cloud computing programming to campus",
     role: "Incoming",
     status: "upcoming",
     badge: "Incoming",
     problem:
       "Students at a commuter campus usually meet cloud tooling for the first time in an internship interview. By then the gap is already priced into who gets hired and who does not.",
     shipped:
-      "Starting as an AWS Campus Leader — running the cloud program on the ground at CSUDH: workshops, credit access, and a route from never having opened a console to having something deployed and linkable.",
+      "Starting as an AWS Campus Leader with THE TEAM — running the cloud program on the ground at CSUDH: workshops, credit access, and a route from never having opened a console to having something deployed and linkable.",
     outcomeLabel: "Target",
-    metric: "Incoming",
-    metricCaption: "start date to be confirmed",
+    metric: "This term",
+    metricCaption: "starting with THE TEAM",
     outcome:
       "Not shipped yet, so no impact number to claim. The metric I care about is how many students end the term with something running in production, not how many sat through a workshop.",
   },
@@ -70,16 +70,17 @@ export const releases: Release[] = [
     title: "FabLab & Apple Ecosystem Support",
     org: "California State University, Dominguez Hills",
     role: "FabLab and Software Technician",
-    status: "shipped",
+    status: "current",
+    badge: "Ongoing",
     problem:
-      "The lab's equipment — 3D printers, Macs, iPads, the whole creative suite — was only as useful as a student's confidence in touching it. Plenty of people walked in curious and walked out without having made anything.",
+      "The lab's equipment — 3D printers, Macs, iPads, the whole creative suite — is only as useful as a student's confidence in touching it. Plenty of people walk in curious and would walk out without having made anything.",
     shipped:
-      "Front-line support across the lab: Swift and the Apple ecosystem (iPad, Mac, Clips, iMovie, GarageBand) plus the 3D printing pipeline in Tinkercad and Fusion 360. Most of the job was working out what someone was actually stuck on, which was rarely the question they came in with.",
+      "Front-line support across the lab: Swift and the Apple ecosystem (iPad, Mac, Clips, iMovie, GarageBand) plus the 3D printing pipeline in Tinkercad and Fusion 360. Most of the job is working out what someone is actually stuck on, which is rarely the question they came in with.",
     outcomeLabel: "Impact",
     metric: "8",
     metricCaption: "tools supported: Swift, iPad, Mac, Clips, iMovie, GarageBand, Tinkercad, Fusion 360",
     outcome:
-      "Turned one-time visitors into repeat users. This is where I learned the habit that has carried into every product conversation since: the stated problem is almost never the real one, and the gap between them is where the work is.",
+      "Still running, and it turns one-time visitors into repeat users. It's where I picked up the habit that has carried into every product conversation since: the stated problem is almost never the real one, and the gap between them is where the work is.",
   },
   {
     version: "v1.5",
@@ -101,11 +102,11 @@ export const releases: Release[] = [
   {
     version: "v1.0",
     title: "Math Tutoring at Scale",
-    org: "GearUp",
+    org: "GEAR UP",
     role: "Math Tutor",
     status: "shipped",
     problem:
-      "GearUp serves students who are statistically least likely to reach college-level math. At that volume you cannot personalize by intuition — you have to find the patterns that explain most of the failures.",
+      "GEAR UP serves students who are statistically least likely to reach college-level math. At that volume you cannot personalize by intuition — you have to find the patterns that explain most of the failures.",
     shipped:
       "Math tutoring across the program, working with students at scale and narrowing in on the handful of recurring misconceptions that accounted for the bulk of where people got stuck.",
     outcomeLabel: "Impact",
@@ -208,7 +209,7 @@ export const skillGroups: SkillGroup[] = [
 ];
 
 export const about = [
-  "I'm a computer science undergrad at CSU Dominguez Hills. Most of what I know about product didn't come from a class — it came from three years of coaching students one at a time, and then from building software for those same people.",
-  "Right now I'm a software development intern at the California STEM Institute for Innovation and Improvement, where I built an organizational scheduling system that around 100 people use to coordinate their work. Before that I ran support in the CSUDH FabLab — Swift, Macs and iPads, 3D printers — which mostly meant figuring out what someone was stuck on before they could explain it to me. And before that I tutored math for GearUp, working with more than 2,000 students.",
-  "The thread through all of it is the same: I like being close to the person using the thing. I'm targeting APM programs because that's the role where staying close to users and staying close to what actually gets built are the same job. On the side I'm building ZeroSkip, which came directly out of the coaching years. I speak English and Gujarati.",
+  "I'm a Computer Science student at California State University, Dominguez Hills, building products at the intersection of messy user problems and the data that explains them — and building real tools, not just studying them.",
+  "I currently work as a Software Development Intern at the California STEM Institute for Innovation and Improvement, where I built an organizational scheduling system in Python and JavaScript now used by around 100 people. Alongside that, I work as a FabLab and Software Technician at CSUDH, supporting students across Swift, the Apple hardware and software ecosystem (iPad, Mac, Clips, iMovie, GarageBand), and 3D printing tools like Tinkercad and Fusion 360. Earlier, I tutored math for GEAR UP, working with over 2,000 students.",
+  "This upcoming term I'm starting as an AWS Campus Leader with THE TEAM, a startup bringing cloud computing programming to campus. Outside of work, I build my own AI tools — including ZeroSkip, an AI-powered accountability app designed to keep people consistent, not just motivated.",
 ];

@@ -22,9 +22,13 @@ export default function About() {
           <dl className="border-hairline grid gap-5 border-t pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
             {[
               ["Studying", "B.S. Computer Science, CSU Dominguez Hills"],
-              ["Currently", "SWE Intern, CA STEM Institute for Innovation and Improvement"],
+              [
+                "Currently",
+                "SWE Intern, CA STEM Institute for Innovation and Improvement · FabLab and Software Technician, CSUDH",
+              ],
+              ["Incoming", "AWS Campus Leader, THE TEAM"],
               ["Building", "ZeroSkip — adaptive accountability"],
-              ["Next", "APM · Google, Meta, Amazon, Microsoft"],
+              ["Targeting", "APM · Google, Meta, Amazon, Microsoft"],
             ].map(([term, value]) => (
               <div key={term}>
                 <dt className="label text-meta">{term}</dt>
