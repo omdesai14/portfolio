@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* ── Design tokens ────────────────────────────────────────────────────────── */
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+}
+
+/*
+   Light palette is defined on bare :root so it is always the base.
+   Dark is layered twice: once for system preference (unless the user has
+   explicitly chosen light), once for an explicit choice, so the toggle wins
+   in both directions.
+*/
+
+:root {
+  --ink: oklch(0.22 0.015 265);
+  --ink-muted: oklch(0.48 0.014 265);
+  --ink-faint: oklch(0.63 0.012 265);
+  --surface: oklch(0.99 0.003 265);
+  --surface-raised: oklch(1 0 0);
+  --line: oklch(0.91 0.006 265);
+  --accent: oklch(0.55 0.17 262);
+  --accent-soft: oklch(0.95 0.03 262);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: oklch(0.94 0.006 265);
+    --ink-muted: oklch(0.72 0.012 265);
+    --ink-faint: oklch(0.56 0.012 265);
+    --surface: oklch(0.17 0.012 265);
+    --surface-raised: oklch(0.21 0.014 265);
+    --line: oklch(0.29 0.014 265);
+    --accent: oklch(0.75 0.14 262);
+    --accent-soft: oklch(0.28 0.05 262);
+  }
+}
+
+:root[data-theme="dark"] {
+  --ink: oklch(0.94 0.006 265);
+  --ink-muted: oklch(0.72 0.012 265);
+  --ink-faint: oklch(0.56 0.012 265);
+  --surface: oklch(0.17 0.012 265);
+  --surface-raised: oklch(0.21 0.014 265);
+  --line: oklch(0.29 0.014 265);
+  --accent: oklch(0.75 0.14 262);
+  --accent-soft: oklch(0.28 0.05 262);
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  /* Keep anchored sections clear of the sticky header. */
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background-color: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--accent-soft);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Entrance animation ───────────────────────────────────────────────────── */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-rise {
+  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
