@@ -155,7 +155,6 @@ export const experience: Role[] = [
     company: "THE TEAM",
     title: "AWS Campus Leader",
     period: "Incoming — Fall 2026",
-    location: "CSU Dominguez Hills",
     highlights: [
       "Problem: Students need a bridge into cloud computing and AWS's ecosystem.",
       "Shipped: Leading AWS technical programming and campus outreach as part of the startup's Campus Leader program.",
@@ -165,8 +164,7 @@ export const experience: Role[] = [
   {
     company: "California STEM Institute for Innovation and Improvement",
     title: "Software Development Intern",
-    period: "Current",
-    location: "CSU Dominguez Hills",
+    period: "July 2026 – August 2026",
     highlights: [
       "Problem: The organization had no centralized system for scheduling across staff.",
       "Shipped: Built an organizational scheduling system using Python and JavaScript.",
@@ -176,8 +174,7 @@ export const experience: Role[] = [
   {
     company: "CSU Dominguez Hills",
     title: "FabLab and Software Technician",
-    period: "Part-time, ongoing",
-    location: "CSU Dominguez Hills",
+    period: "March 2026 – Present",
     highlights: [
       "Problem: Students needed hands-on support with creative and fabrication tools.",
       "Shipped: Supported students in Swift coding, Apple software (Clips, iMovie, GarageBand), and 3D printing (Tinkercad, Fusion 360).",
@@ -185,22 +182,13 @@ export const experience: Role[] = [
     ],
   },
   {
-    company: "GEAR UP",
-    title: "Math Tutor",
-    period: "Part-time",
+    company: "GearUp",
+    title: "Academic Coach & Math Tutor",
+    period: "April 2023 – March 2026",
     highlights: [
-      "Problem: Students needed accessible, consistent math tutoring support.",
-      "Shipped: Provided one-on-one and group math tutoring.",
-      "Impact: Worked with 2,000+ students.",
-    ],
-  },
-  {
-    title: "Academic Coach",
-    period: "2 years 11 months",
-    highlights: [
-      "Problem: Students needed broader academic support beyond a single subject.",
-      "Shipped: Provided academic coaching and mentorship.",
-      "Impact: 2 years 11 months of sustained coaching relationships.",
+      "Problem: Students needed both academic coaching and consistent math support.",
+      "Shipped: Provided one-on-one academic coaching and math tutoring.",
+      "Impact: Supported 2,000+ students.",
     ],
   },
 ];
@@ -210,15 +198,7 @@ export const experience: Role[] = [
 export const skills: SkillGroup[] = [
   {
     category: "Technical",
-    items: [
-      "Python",
-      "Swift",
-      "JavaScript",
-      "Streamlit",
-      "SQL (learning)",
-      "RAG",
-      "Agentic AI",
-    ],
+    items: ["Python", "Swift", "Streamlit", "SQL (learning)"],
   },
   {
     category: "Product & Tools",
@@ -226,7 +206,7 @@ export const skills: SkillGroup[] = [
   },
   {
     category: "Languages",
-    items: ["English", "Gujarati"],
+    items: ["English", "Gujarati", "Hindi", "Marathi"],
   },
 ];
 
