@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Shipped from "@/components/Shipped";
 import Skills from "@/components/Skills";
+import { languages } from "@/lib/content";
 import { site } from "@/lib/site";
 
 /**
@@ -24,7 +25,7 @@ const personSchema = {
     "@type": "CollegeOrUniversity",
     name: "California State University, Dominguez Hills",
   },
-  knowsLanguage: ["English", "Gujarati"],
+  knowsLanguage: languages,
   sameAs: [site.links.github, site.links.linkedin],
 };
 

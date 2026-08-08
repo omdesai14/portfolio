@@ -5,25 +5,29 @@
 
 export const site = {
   name: "Om Desai",
-  role: "Computer Science undergrad · CSU Dominguez Hills",
+  role: "Computer Science student · CSU Dominguez Hills",
   /**
    * Used for canonical URLs, sitemap and OG tags. Override in Vercel with
    * NEXT_PUBLIC_SITE_URL once a custom domain is attached. No secret value —
    * a public origin is safe to expose to the client.
    */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://omdesai.vercel.app",
-  email: "om.desai2@icloud.com",
+  email: "odesai2@toromail.csudh.edu",
   location: "Los Angeles, CA",
-  title: "Om Desai — Builder, systems thinker, APM candidate",
+  title: "Om Desai — Computer Science student, CSU Dominguez Hills",
   description:
-    "Computer science undergrad at CSU Dominguez Hills. I build systems people actually use — a scheduling platform for ~100 people, an adaptive accountability app, and three years of coaching before either. Targeting APM programs.",
+    "Computer Science student at CSU Dominguez Hills. Software Development Intern at the California STEM Institute, FabLab and Software Technician at CSUDH, and incoming AWS Campus Leader with THE TEAM.",
   links: {
     github: "https://github.com/omdesai14",
-    // TODO(om): confirm this handle — it is a best guess. One-line change here.
-    linkedin: "https://www.linkedin.com/in/omdesai14/",
+    githubHandle: "@omdesai14",
+    linkedin: "https://www.linkedin.com/in/om-desai-8717041b0/",
+    linkedinHandle: "in/om-desai-8717041b0",
     zeroskip: "https://github.com/omdesai14/zeroskip",
   },
-  /** Static file in /public. No upload path exists anywhere on this site. */
+  /**
+   * Static file in /public, served read-only. There is no upload path anywhere
+   * on this site. Replacing the résumé means replacing this exact file.
+   */
   resume: "/Om-Desai-Resume.pdf",
 } as const;
 

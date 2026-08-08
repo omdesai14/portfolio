@@ -2,45 +2,29 @@
 
 /* ---------------------------------------------------------------------------
    TOKENS
-   Six base colors, plus derived variants that exist only because of contrast
-   requirements. Nothing in a component should ever hardcode a hex value.
+   A single light ground throughout — no alternating sections. One warm accent,
+   used only for section labels and active states.
 
-   Base            #14181F ink      #FAF9F6 paper
-   Text            #EDE9E0 on ink   #1C1F26 on paper
-   Accent          #D4A34A amber    #5C7A99 slate
-
-   The -deep / -light variants are the same hues pushed until they clear WCAG AA
-   against the ground they sit on. Amber at #D4A34A is 2.19:1 on paper, which is
-   fine for a rule or a border but fails for text — hence amber-deep.
-
-   Contrast ratios below are measured against the *raised* surface (#F2F0EA /
-   #1A1F28), not the section background, since that's the worse case: text sits
-   on cards more often than on bare ground.
+   Every ratio below is measured against --color-surface (#F7F7F5) rather than
+   pure white, because that's the worse case: text sits on cards as often as on
+   the page background.
 --------------------------------------------------------------------------- */
 
 @theme {
-  --color-ink: #14181f;
-  --color-ink-raised: #1a1f28; /* cards on dark */
-  --color-ink-line: #212a35; /* slate @ 18% over ink */
+  --color-bg: #ffffff;
+  --color-surface: #f7f7f5; /* cards, subtle fills */
+  --color-border: #e3e3e0;
+  --color-border-strong: #cfcfca;
 
-  --color-paper: #faf9f6;
-  --color-paper-sunk: #f2f0ea; /* cards on light */
-  --color-paper-line: #e4e7e9; /* slate @ 14% over paper */
+  --color-text: #1a1a1a; /* body — 16.3:1 */
+  --color-text-muted: #62625f; /* secondary — 5.6:1 */
 
-  --color-on-ink: #ede9e0; /* body text on dark  — 15.6:1 */
-  --color-on-ink-muted: #b0aeaa; /* secondary on dark   —  7.8:1 */
-  --color-on-paper: #1c1f26; /* body text on light — 15.9:1 */
-  --color-on-paper-muted: #63656a; /* secondary on light  —  5.0:1 */
+  /* The accent is deliberately a deep bronze-gold rather than a bright amber:
+     #D4A34A only reaches 2.2:1 on white, which fails even the 3:1 bar for
+     non-text marks. This clears AA for small text at 4.7:1. */
+  --color-accent: #8a6a1e;
 
-  --color-amber: #d4a34a; /* accent; text-safe on ink only — 7.6:1 */
-  --color-amber-deep: #7a5d19; /* accent text on paper          — 5.4:1 */
-  --color-slate: #5c7a99; /* borders, non-text marks */
-  --color-slate-light: #8fa9c4; /* slate as text on ink   — 7.2:1 */
-  --color-slate-deep: #4a6480; /* slate as text on paper — 5.8:1 */
-
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", monospace;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 /* ---------------------------------------------------------------------------
@@ -49,7 +33,6 @@
 
 html {
   scroll-behavior: smooth;
-  /* Anchor targets clear the sticky header instead of hiding under it. */
   scroll-padding-top: 5rem;
   -webkit-text-size-adjust: 100%;
 }
@@ -61,103 +44,35 @@ html {
 }
 
 body {
-  background-color: var(--color-ink);
-  color: var(--color-on-ink);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-sans);
   font-synthesis-weight: none;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  /* Tabular figures so dates and metrics line up down the roadmap rail. */
   font-variant-numeric: tabular-nums;
 }
 
 /* ---------------------------------------------------------------------------
-   GROUND CLASSES
-   Each section declares which ground it sits on. That sets its text colors AND
-   its --focus-ring, so focus states stay visible on both light and dark without
-   any component needing to know where it is.
---------------------------------------------------------------------------- */
-
-/* `ground-*` sets colors and custom properties only. `on-*` adds the opaque
-   background on top. The header needs the former without the latter so it can
-   stay translucent. */
-.on-ink,
-.ground-ink {
-  color: var(--color-on-ink);
-  --focus-ring: var(--color-amber);
-  --hairline: var(--color-ink-line);
-  --muted: var(--color-on-ink-muted);
-  --accent-text: var(--color-amber);
-  --meta: var(--color-slate-light);
-  --raised: var(--color-ink-raised);
-}
-
-.on-paper,
-.ground-paper {
-  color: var(--color-on-paper);
-  --focus-ring: var(--color-amber-deep);
-  --hairline: var(--color-paper-line);
-  --muted: var(--color-on-paper-muted);
-  --accent-text: var(--color-amber-deep);
-  --meta: var(--color-slate-deep);
-  --raised: var(--color-paper-sunk);
-}
-
-.on-ink {
-  background-color: var(--color-ink);
-}
-
-.on-paper {
-  background-color: var(--color-paper);
-}
-
-/* Convenience utilities that read from whichever ground is in scope. */
-.text-muted {
-  color: var(--muted);
-}
-.text-meta {
-  color: var(--meta);
-}
-.text-accent {
-  color: var(--accent-text);
-}
-.border-hairline {
-  border-color: var(--hairline);
-}
-.bg-raised {
-  background-color: var(--raised);
-}
-
-/* A card sitting just off its ground. Held back from the full raised value so
-   the lift on hover has somewhere to go. Not a Tailwind token, because the
-   value depends on which ground the card is on. */
-.surface {
-  background-color: color-mix(in srgb, var(--raised) 55%, transparent);
-}
-
-/* ---------------------------------------------------------------------------
    FOCUS
-   Every interactive element gets a visible ring. Never removed, only restyled.
+   Visible on every interactive element. Never removed.
 --------------------------------------------------------------------------- */
 
 :focus-visible {
-  outline: 2px solid var(--focus-ring, var(--color-amber-deep));
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* Tailwind's `transition-colors` includes outline-color, which would ease the
-   ring's hue in from the text color over the transition duration. A focus ring
-   should land at full strength the instant it appears — a keyboard user is
-   already mid-navigation and shouldn't watch it catch up. */
+   ring's hue in from the text color. A focus ring must land at full strength
+   the moment it appears. */
 .transition-colors:focus-visible {
   transition-property: color, background-color, border-color, text-decoration-color,
     fill, stroke;
-}
-
-/* Pointer users don't get the ring; keyboard users always do. */
-:focus:not(:focus-visible) {
-  outline: none;
 }
 
 .skip-link {
@@ -166,12 +81,11 @@ body {
   top: 0.75rem;
   z-index: 100;
   transform: translateY(-200%);
-  background-color: var(--color-amber);
-  color: var(--color-ink);
+  background-color: var(--color-text);
+  color: var(--color-bg);
   padding: 0.6rem 1rem;
   border-radius: 4px;
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   transition: transform 150ms ease;
 }
 .skip-link:focus {
@@ -180,25 +94,16 @@ body {
 
 /* ---------------------------------------------------------------------------
    TYPE
+   One family. Section labels are the only uppercase treatment on the page.
 --------------------------------------------------------------------------- */
 
-.font-display {
-  font-family: var(--font-display);
-  /* Fraunces dialed to low softness with wonk on: confident and slightly
-     technical rather than a generic transitional serif. */
-  font-variation-settings: "SOFT" 0, "WONK" 1, "opsz" 144;
-  letter-spacing: -0.015em;
-  font-weight: 600;
-}
-
-/* Metadata voice: version tags, dates, section labels. Small and deliberate. */
 .label {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   line-height: 1;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   font-weight: 500;
+  color: var(--color-accent);
 }
 
 .balance {
@@ -210,97 +115,24 @@ body {
 
 /* ---------------------------------------------------------------------------
    MOTION
-   Two mechanisms only:
-     1. .lift-*  — CSS-only load choreography for the hero.
-     2. .reveal  — toggled by an IntersectionObserver as sections enter view.
-   Both collapse to their final state under prefers-reduced-motion, and .reveal
-   is force-shown for no-JS visitors via a <noscript> block in the layout.
+   Scroll fade-ins only. No entrance choreography, no ambient movement, no
+   transform-based hover effects anywhere on the page.
 --------------------------------------------------------------------------- */
-
-@keyframes lift-in {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes rule-draw {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes drift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(4%, -3%, 0) scale(1.12);
-  }
-}
-
-@keyframes drift-alt {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1.08);
-  }
-  50% {
-    transform: translate3d(-5%, 4%, 0) scale(1);
-  }
-}
-
-.lift {
-  opacity: 0;
-  animation: lift-in 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.rule-draw {
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: rule-draw 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-/* Compositor-only: transform and opacity, never width/height/filter. */
-.drift {
-  animation: drift 28s ease-in-out infinite;
-}
-.drift-alt {
-  animation: drift-alt 34s ease-in-out infinite;
-}
 
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(10px);
   transition:
-    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
+    opacity 500ms ease-out,
+    transform 500ms ease-out;
 }
 
 .reveal[data-shown="true"] {
   opacity: 1;
   transform: none;
-  will-change: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lift,
-  .rule-draw,
-  .drift,
-  .drift-alt {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
   .reveal {
     opacity: 1 !important;
     transform: none !important;
@@ -313,65 +145,5 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-/* ---------------------------------------------------------------------------
-   ROADMAP ENTRY
-   Hover is a 2px lift plus a hairline-to-amber border. No scale, no bounce.
---------------------------------------------------------------------------- */
-
-.release {
-  transition:
-    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 200ms ease,
-    background-color 200ms ease;
-}
-
-@media (hover: hover) {
-  .release:hover {
-    transform: translateY(-2px);
-    border-color: var(--color-amber);
-    background-color: var(--raised);
-  }
-  .release:hover .release-node {
-    background-color: var(--color-amber);
-    border-color: var(--color-amber);
-  }
-}
-
-.release:focus-within {
-  border-color: var(--color-amber);
-}
-
-.release-node {
-  transition:
-    background-color 300ms ease,
-    border-color 300ms ease;
-}
-
-/* The spine node fills once its entry has scrolled into view. */
-.reveal[data-shown="true"] .release-node {
-  background-color: var(--color-amber);
-  border-color: var(--color-amber);
-}
-
-/* Underline that grows from the left on hover — used on text links. */
-.link-underline {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 0% 1px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 220ms cubic-bezier(0.22, 1, 0.36, 1);
-  padding-bottom: 1px;
-}
-.link-underline:hover,
-.link-underline:focus-visible {
-  background-size: 100% 1px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .link-underline {
-    transition: none;
   }
 }
