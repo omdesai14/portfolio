@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "CSU Dominguez Hills",
     "computer science",
     "software development intern",
-    "AWS Campus Leader",
+    "Promenous",
     "ZeroSkip",
     "Python",
     "Swift",
