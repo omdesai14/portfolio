@@ -16,7 +16,7 @@ export const site = {
   location: "Los Angeles, CA",
   title: "Om Desai — Computer Science student, CSU Dominguez Hills",
   description:
-    "Computer Science student at CSU Dominguez Hills. Software Development Intern at the California STEM Institute, FabLab and Software Technician at CSUDH, and incoming AWS Campus Leader with THE TEAM.",
+    "Computer Science student at CSU Dominguez Hills. Building Promenous, an AI inference infrastructure project. Software Development Intern at the California STEM Institute and FabLab and Software Technician at CSUDH.",
   links: {
     github: "https://github.com/omdesai14",
     githubHandle: "@omdesai14",
