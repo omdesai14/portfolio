@@ -29,18 +29,6 @@ export type Role = {
 /** Reverse-chronological. */
 export const roles: Role[] = [
   {
-    title: "AWS Campus Leader",
-    org: "THE TEAM",
-    period: "Incoming this term",
-    status: "upcoming",
-    badge: "Incoming",
-    problem:
-      "THE TEAM is a startup bringing cloud computing programming to campus, where most students get little hands-on exposure to cloud tools before they start applying for internships.",
-    shipped:
-      "Starting this term as an AWS Campus Leader, running the cloud computing program on campus.",
-    impact: "The role hasn't started yet, so there are no results to report.",
-  },
-  {
     title: "Software Development Intern",
     org: "California STEM Institute for Innovation and Improvement, CSUDH",
     period: "July 2026 – August 2026",
@@ -79,17 +67,42 @@ export const roles: Role[] = [
   },
 ];
 
-export const project = {
-  name: "ZeroSkip",
-  tagline: "An AI-powered accountability app built to keep people consistent, not just motivated.",
-  stack: ["Python", "Streamlit"],
-  repo: "https://github.com/omdesai14/zeroskip",
-  problem:
-    "Staying consistent is harder than staying motivated. A plan made in advance doesn't account for what actually happens day to day, so it stops matching reality almost immediately.",
-  approach:
-    "ZeroSkip generates a daily action plan and adapts it based on how the user actually behaves, rather than holding them to a plan they've already fallen behind on. Built in Python and Streamlit.",
-  outcome: "Live and open-source on GitHub.",
+export type Project = {
+  name: string;
+  tagline: string;
+  stack: string[];
+  repo?: string;
+  status?: string;
+  problem: string;
+  approach: string;
+  outcome: string;
 };
+
+export const projects: Project[] = [
+  {
+    name: "Promenous",
+    tagline: "Building measurable, reliable infrastructure for AI inference.",
+    stack: ["Python", "FastAPI", "Next.js", "TypeScript", "AI inference"],
+    status: "In development · Private repository",
+    problem:
+      "AI inference performance is difficult to evaluate fairly: latency, throughput, and reliability can pull in different directions.",
+    approach:
+      "Building an AI infrastructure workspace and measurement foundation for reproducible inference experiments. The system includes a web application, a Python API, and an HTTP benchmark runner that records actual request outcomes.",
+    outcome:
+      "Implemented the application foundation, API health checks, and an initial benchmarking workflow with automated tests. GPU-backed execution, deployment, and optimization remain future milestones; no performance gains are claimed yet.",
+  },
+  {
+    name: "ZeroSkip",
+    tagline: "An AI-powered accountability app built to keep people consistent, not just motivated.",
+    stack: ["Python", "Streamlit"],
+    repo: "https://github.com/omdesai14/zeroskip",
+    problem:
+      "Staying consistent is harder than staying motivated. A plan made in advance doesn't account for what actually happens day to day, so it stops matching reality almost immediately.",
+    approach:
+      "ZeroSkip generates a daily action plan and adapts it based on how the user actually behaves, rather than holding them to a plan they've already fallen behind on. Built in Python and Streamlit.",
+    outcome: "Live and open-source on GitHub.",
+  },
+];
 
 export type SkillGroup = {
   name: string;
@@ -134,5 +147,5 @@ export const languages = ["English", "Gujarati", "Hindi", "Marathi"];
 export const about = [
   "I'm a Computer Science student at California State University, Dominguez Hills, building products at the intersection of messy user problems and the data that explains them — and building real tools, not just studying them.",
   "I currently work as a Software Development Intern at the California STEM Institute for Innovation and Improvement, where I built an organizational scheduling system in Python and JavaScript now used by around 100 people. Alongside that, I work as a FabLab and Software Technician at CSUDH, supporting students across Swift, the Apple hardware and software ecosystem (iPad, Mac, Clips, iMovie, GarageBand), and 3D printing tools like Tinkercad and Fusion 360. Earlier, I tutored math for GEAR UP, working with over 2,000 students.",
-  "This upcoming term I'm starting as an AWS Campus Leader with THE TEAM, a startup bringing cloud computing programming to campus. Outside of work, I build my own AI tools — including ZeroSkip, an AI-powered accountability app designed to keep people consistent, not just motivated.",
+  "Outside of work, I'm building Promenous, an AI inference infrastructure project focused on reproducible measurements and balanced performance. I also built ZeroSkip, an AI-powered accountability app designed to help people stay consistent.",
 ];
