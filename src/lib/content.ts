@@ -32,7 +32,7 @@ export const roles: Role[] = [
     title: "Software Development Intern",
     org: "California STEM Institute for Innovation and Improvement, CSUDH",
     period: "July 2026 – August 2026",
-    status: "current",
+    status: "past",
     problem:
       "The institute needed one system to coordinate scheduling across the people working there.",
     shipped:
@@ -146,6 +146,6 @@ export const languages = ["English", "Gujarati", "Hindi", "Marathi"];
 
 export const about = [
   "I'm a Computer Science student at California State University, Dominguez Hills, building products at the intersection of messy user problems and the data that explains them — and building real tools, not just studying them.",
-  "I currently work as a Software Development Intern at the California STEM Institute for Innovation and Improvement, where I built an organizational scheduling system in Python and JavaScript now used by around 100 people. Alongside that, I work as a FabLab and Software Technician at CSUDH, supporting students across Swift, the Apple hardware and software ecosystem (iPad, Mac, Clips, iMovie, GarageBand), and 3D printing tools like Tinkercad and Fusion 360. Earlier, I tutored math for GEAR UP, working with over 2,000 students.",
+  "I previously worked as a Software Development Intern at the California STEM Institute for Innovation and Improvement, where I built an organizational scheduling system in Python and JavaScript now used by around 100 people. I currently work as a FabLab and Software Technician at CSUDH, supporting students across Swift, the Apple hardware and software ecosystem (iPad, Mac, Clips, iMovie, GarageBand), and 3D printing tools like Tinkercad and Fusion 360. Earlier, I tutored math for GEAR UP, working with over 2,000 students.",
   "Outside of work, I'm building Promenous, an AI inference infrastructure project focused on reproducible measurements and balanced performance. I also built ZeroSkip, an AI-powered accountability app designed to help people stay consistent.",
 ];
