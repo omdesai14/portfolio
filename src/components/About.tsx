@@ -11,8 +11,7 @@ const facts: [string, string][] = [
     "Currently",
     "Software Development Intern, California STEM Institute · FabLab and Software Technician, CSUDH",
   ],
-  ["Incoming", "AWS Campus Leader, THE TEAM"],
-  ["Building", "ZeroSkip"],
+  ["Building", "Promenous · ZeroSkip"],
   ["Languages", languages.join(", ")],
 ];
 
